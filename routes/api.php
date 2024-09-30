@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JsonDataController;
 use App\Http\Controllers\postcontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,3 +10,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::ApiResource('posts',postcontroller::class);
+Route::ApiResource('search',JsonDataController::class);

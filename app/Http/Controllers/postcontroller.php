@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
+use App\Models\post;
 use Illuminate\Http\Request;
 
 class postcontroller extends Controller
@@ -9,9 +11,12 @@ class postcontroller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return 'hh';
+        $perPage = $request->input('per_page', 15); // Default to 15 items per page
+        $posts = post::paginate($perPage);
+
+        return PostResource::collection($posts);
     }
 
     /**
